@@ -7,9 +7,6 @@ function SocialApp() {
       <PrimarySearchAppBar />
       <MainContainer />
       Social App
-      <PostCard />
-      <PostCard />
-      <PostCard />
     </div>
   );
 }
