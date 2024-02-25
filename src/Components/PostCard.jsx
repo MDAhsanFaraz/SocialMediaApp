@@ -21,7 +21,15 @@ export default function PostCard({ authorFirstName, image, content }) {
         title="Shrimp and Chorizo Paella"
         subheader="September 14, 2016"
       />
-      <CardMedia component="img" height="194" image={image} alt="Paella dish" />
+      {/* if no image then render null */}
+      {image.length > 0 ? (
+        <CardMedia
+          component="img"
+          height="194"
+          image={image}
+          alt="Paella dish"
+        />
+      ) : null}
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {content}
