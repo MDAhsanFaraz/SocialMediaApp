@@ -11,7 +11,7 @@ import FavoriteSharpIcon from "@mui/icons-material/FavoriteSharp";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useState } from "react";
 
-export default function PostCard({ authorFirstName, image, content }) {
+function PostCard({ authorFirstName, image, content }) {
   const [isLiked, setIsLiked] = useState(false);
   return (
     <Card sx={{ maxWidth: 345, mb: "3rem" }}>
@@ -54,3 +54,4 @@ export default function PostCard({ authorFirstName, image, content }) {
     </Card>
   );
 }
+export default React.memo(PostCard); //to stop re-rendring of all the posts

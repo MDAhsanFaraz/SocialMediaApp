@@ -28,7 +28,7 @@ const Input = () => {
       .then((response) => {
         const responseObject = response.data;
         console.log(responseObject);
-        setPosts([...posts, response.data]);
+        setPosts([response.data, ...posts]);
         setLoading(false);
         setPostText("");
         setImageUrl("");
