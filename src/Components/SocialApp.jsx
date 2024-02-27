@@ -1,12 +1,12 @@
-import PrimarySearchAppBar from "./Navbar/Navbar";
-import PostCard from "./PostCard";
+import Navbar from "./Navbar/Navbar";
+import Input from "./Input/Input";
 import MainContainer from "././MainContainer.jsx/MainContainer";
 function SocialApp() {
   return (
     <div>
-      <PrimarySearchAppBar />
+      <Navbar />
+      <Input />
       <MainContainer />
-      Social App
     </div>
   );
 }

@@ -7,9 +7,12 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteSharpIcon from "@mui/icons-material/FavoriteSharp";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useState } from "react";
 
 export default function PostCard({ authorFirstName, image, content }) {
+  const [isLiked, setIsLiked] = useState(false);
   return (
     <Card sx={{ maxWidth: 345, mb: "3rem" }}>
       <CardHeader
@@ -18,7 +21,7 @@ export default function PostCard({ authorFirstName, image, content }) {
             {authorFirstName.substring(0, 1)}
           </Avatar>
         }
-        title="Shrimp and Chorizo Paella"
+        title={authorFirstName}
         subheader="September 14, 2016"
       />
       {/* if no image then render null */}
@@ -36,8 +39,15 @@ export default function PostCard({ authorFirstName, image, content }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+        <IconButton
+          onClick={() => setIsLiked(!isLiked)}
+          aria-label="add to favorites"
+        >
+          {isLiked ? (
+            <FavoriteSharpIcon sx={{ color: red[800] }} />
+          ) : (
+            <FavoriteBorderIcon />
+          )}
         </IconButton>
         <IconButton aria-label="share"></IconButton>
       </CardActions>
