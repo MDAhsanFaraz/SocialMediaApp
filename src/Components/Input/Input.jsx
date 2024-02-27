@@ -1,13 +1,17 @@
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
+
 import { useState } from "react";
 import axios from "axios";
 const Input = () => {
   const [postText, setPostText] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [loading, setLoading] = useState("");
 
   async function createPost() {
+    setLoading(true);
     axios
       .post(
         "https://dummyapi.io/data/v1/post/create",
@@ -22,6 +26,9 @@ const Input = () => {
       .then((response) => {
         const responseObject = response.data;
         console.log(responseObject);
+        setLoading(false);
+        setPostText("");
+        setImageUrl("");
       });
   }
   return (
@@ -47,9 +54,15 @@ const Input = () => {
           setImageUrl(e.target.value);
         }}
       />
-      <Button sx={{ mt: "1rem" }} variant="contained" onClick={createPost}>
-        Contained
-      </Button>
+      {loading ? (
+        <LoadingButton loading variant="outlined">
+          Submit
+        </LoadingButton>
+      ) : (
+        <Button sx={{ mt: "1rem" }} variant="contained" onClick={createPost}>
+          Contained
+        </Button>
+      )}
     </Box>
   );
 };
