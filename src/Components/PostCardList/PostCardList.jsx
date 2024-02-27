@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import PostCard from "../PostCard";
 import axios from "axios";
+import PostsContext from "../../providers/PostsProvider";
 
 function PostCardList() {
-  const [posts, setPosts] = useState([]);
+  const { posts, setPosts } = useContext(PostsContext);
   useEffect(() => {
     // we will download the content from dummyapi.io
     axios
@@ -14,7 +15,7 @@ function PostCardList() {
         const responseObject = response.data;
         setPosts([...responseObject.data]);
       });
-  }, []);
+  }, [posts]);
   return posts.length == 0
     ? "loading..."
     : posts.map((post) => (

@@ -2,13 +2,15 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import LoadingButton from "@mui/lab/LoadingButton";
-
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import PostsContext from "../../providers/PostsProvider";
+
 const Input = () => {
   const [postText, setPostText] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState("");
+  const { posts, setPosts } = useContext(PostsContext);
 
   async function createPost() {
     setLoading(true);
@@ -26,6 +28,7 @@ const Input = () => {
       .then((response) => {
         const responseObject = response.data;
         console.log(responseObject);
+        setPosts([...posts, response.data]);
         setLoading(false);
         setPostText("");
         setImageUrl("");
@@ -60,7 +63,7 @@ const Input = () => {
         </LoadingButton>
       ) : (
         <Button sx={{ mt: "1rem" }} variant="contained" onClick={createPost}>
-          Contained
+          Submit
         </Button>
       )}
     </Box>
