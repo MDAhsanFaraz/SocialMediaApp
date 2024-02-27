@@ -11,7 +11,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function PostCard({ authorFirstName, image, content }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, mb: "3rem" }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
